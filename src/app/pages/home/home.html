@@ -13,12 +13,13 @@
       </ion-item>
       <button ion-button type="submit" block>+ TODO</button>
     </form>
-  
   </ion-grid>
+
   <ion-grid>
     <h2>Listagem de tarefas</h2>
+    <ion-searchbar [(ngModel)]="searchTerm"></ion-searchbar>
     <ion-list>
-      <ion-item *ngFor="let todo of todos">
+      <ion-item *ngFor="let todo of todos | filter : searchTerm">
         {{todo.title}}
       </ion-item>
     </ion-list>

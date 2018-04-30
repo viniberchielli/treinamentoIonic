@@ -2,6 +2,7 @@ import { Component} from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { TodoService } from '../../../app/services/todos-service';
 import { Todo } from '../../models/todos'
+import { TodoProvider } from '../../../app/providers/todo-provider';
 
 @Component({
   selector: 'page-home',
@@ -12,7 +13,9 @@ export class HomePage {
 
   todos: Todo[] = new Array<Todo>();
   todo: Todo = new Todo;
-  constructor(public navCtrl: NavController, private todosService: TodoService) {
+  searchTerm : string = "";
+
+  constructor(public navCtrl: NavController, private todosService: TodoService, private todosProvider : TodoProvider) {
   }
 
   getAll() {
@@ -32,8 +35,13 @@ export class HomePage {
   }
   
   ionViewDidLoad() {
-    this.getAll();
+    this.getAll()
+    this.setFilteredItems();
   }
+
+  setFilteredItems() {
+    this.todos = this.todosProvider.filterItems(this.searchTerm, this.todos);
+}
 
 }
 

@@ -6,12 +6,15 @@ import { HomePage } from './pages/home/home';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { TodoService } from './services/todos-service';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { TodoProvider } from '../app/providers/todo-provider';
+import {HttpClientModule } from '@angular/common/http';
+import { TodoPipe } from './pipes/todo-pipes';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    TodoPipe
   ],
   imports: [
     BrowserModule,
@@ -27,7 +30,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     StatusBar,
     SplashScreen,
     TodoService,
-    
+    TodoProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
